@@ -4,8 +4,6 @@ import {
     faCircleDollarToSlot,
     faCircleQuestion,
     faCircleXmark,
-    faCloudUpload,
-    faComment,
     faEllipsisVertical,
     faGear,
     faKeyboard,
@@ -25,6 +23,8 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { Fragment, useEffect, useState } from 'react';
 import { faAdn } from '@fortawesome/free-brands-svg-icons';
+import { MessageIcon, InboxIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -128,12 +128,17 @@ function Header() {
                         <Fragment>
                             <Tippy delay={200} content="Upload Video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
                             <Tippy delay={200} content="Message" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faComment} />
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={200} content="Inbox" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <InboxIcon />
                                 </button>
                             </Tippy>
                         </Fragment>
@@ -145,10 +150,11 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 alt="Ngo Dinh Canh"
                                 src={require('~/assets/images/avatar.png')}
+                                fallback={require('~/assets/images/avatar.png')}
                             />
                         ) : (
                             <button className={cx('more-btn')}>
